@@ -149,6 +149,7 @@ public class OrderRepository : IOrderRepository
     {
         var query = _context.SoOrders
             .Include(o => o.Customer)
+            .Include(o=> o.Items)
             .AsQueryable();
 
         if (!string.IsNullOrEmpty(keyword))

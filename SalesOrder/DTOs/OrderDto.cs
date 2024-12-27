@@ -18,6 +18,8 @@ public class OrderDto
 
     public string CustomerName { get; set; } = string.Empty;
 
+    public decimal TotalPrice { get; set; } = 0m;
+
     public string Address { get; set; } = string.Empty;
 
     // If you need to include a list of customers for dropdown

@@ -4,7 +4,6 @@ using ClosedXML.Excel;
 using SalesOrder.Data;
 using SalesOrder.Models;
 
-
 namespace SalesOrder.Controllers
 {
     public class ExportController : Controller
@@ -22,6 +21,7 @@ namespace SalesOrder.Controllers
             {
                 var query = _context.SoOrders
                     .Include(o => o.Customer)
+                    .Include(o=> o.Items)
                     .AsQueryable();
 
                 if (!string.IsNullOrEmpty(keyword))
@@ -45,7 +45,8 @@ namespace SalesOrder.Controllers
                     {
                         OrderId = o.SoOrderId,
                         OrderDate = o.OrderDate,
-                        CustomerName = o.Customer.CustomerName ?? string.Empty
+                        CustomerName = o.Customer.CustomerName ?? string.Empty,
+                        TotalPrice = (decimal)o.Items.Sum(data=> Math.Round(data.Quantity * data.Price))
                     })
                     .ToListAsync();
 
@@ -58,8 +59,9 @@ namespace SalesOrder.Controllers
                     worksheet.Cell(1, 2).Value = "Sales Order";
                     worksheet.Cell(1, 3).Value = "Order Date";
                     worksheet.Cell(1, 4).Value = "Customer";
+                    worksheet.Cell(1, 5).Value = "Total Price";
 
-                    
+
                     int row = 2;
                     foreach (var order in orders)
                     {
@@ -67,8 +69,23 @@ namespace SalesOrder.Controllers
                         worksheet.Cell(row, 2).Value = order.OrderId;
                         worksheet.Cell(row, 3).Value = order.OrderDate.ToString("yyyy-MM-dd");
                         worksheet.Cell(row, 4).Value = order.CustomerName;
+                        worksheet.Cell(row, 5).Value = order.TotalPrice;
+                        worksheet.Cell(row, 5).Style.NumberFormat.Format = "[$Rp-id-ID] #,##0.00";
                         row++;
+
+                        if(row-2 == orders.Count())
+                        {
+                            worksheet.Cell(row, 1).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(row, 2).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(row, 3).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(row, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(row, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(row, 5).Style.NumberFormat.Format = "[$Rp-id-ID] #,##0.00";
+
+                            worksheet.Cell(row, 5).Value = orders.Sum(o => o.TotalPrice);
+                        }
                     }
+                    
 
                     worksheet.Columns().AdjustToContents();
 

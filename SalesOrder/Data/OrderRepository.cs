@@ -148,6 +148,7 @@ public class OrderRepository : IOrderRepository
     public IQueryable<OrderDto> GetOrdersQueryable(string keyword, DateTime? orderDate)
     {
         var query = _context.SoOrders
+            .AsNoTracking()
             .Include(o => o.Customer)
             .Include(o=> o.Items)
             .AsQueryable();

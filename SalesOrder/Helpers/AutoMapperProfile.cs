@@ -13,7 +13,7 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Items, opt => opt.Ignore()) // Items handled manually
             .ReverseMap()
             .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.CustomerName))
-            .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => (decimal)src.Items.Sum(i=> Math.Round(i.Quantity * i.Price))))
+            .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => (decimal)src.Items.Sum(i=> Math.Round(i.Quantity * i.Price, 2))))
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
 
         CreateMap<ItemDto, SoItem>()

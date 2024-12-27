@@ -66,13 +66,12 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-                <div id="itemPagination"></div>
-                <div class="row">
-                    <div class="col-md-12 text-center"> 
-                        <p>Total Item: <span id="totalItem">0</span></p>
-                        <p>Total Amount: <span id="totalAmount">0</span></p>
-                    </div>
+                <div class="row mt-3 text-start justify-content-end">
+                    <p class="col-6 col-lg-3">Total Item: <span id="totalItem">0</span></p>
+                    <p class="col-6 col-lg-3">Total Amount: <span id="totalAmount">0</span></p>
                 </div>
+
+                <div id="itemPagination"></div>
             </div>
         </div>
 
@@ -98,7 +97,9 @@
                 var endIndex = startIndex + itemsPerPage;
                 var pageItems = items.slice(startIndex, endIndex);
 
-                pageItems.forEach(function(item, index) {
+                pageItems.forEach(function (item, index) {
+                  const price = (item.price).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                  const totalPrice = (item.quantity * item.price).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                   tbody.append(`
                       <tr>
                           <td>${startIndex + index + 1}</td>
@@ -112,8 +113,8 @@
                           </td>
                           <td>${item.itemName}</td>
                           <td>${item.quantity}</td>
-                          <td>${item.price.toFixed(2)}</td>
-                          <td>${(item.quantity * item.price).toFixed(2)}</td>
+                          <td>${price}</td>
+                          <td>${totalPrice}</td>
                       </tr>
                   `);
               });

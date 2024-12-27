@@ -20,6 +20,7 @@ namespace SalesOrder.Controllers
             try
             {
                 var query = _context.SoOrders
+                    .AsNoTracking()
                     .Include(o => o.Customer)
                     .Include(o=> o.Items)
                     .AsQueryable();
@@ -46,7 +47,7 @@ namespace SalesOrder.Controllers
                         OrderId = o.SoOrderId,
                         OrderDate = o.OrderDate,
                         CustomerName = o.Customer.CustomerName ?? string.Empty,
-                        TotalPrice = (decimal)o.Items.Sum(data=> Math.Round(data.Quantity * data.Price))
+                        TotalPrice = (decimal)o.Items.Sum(data=> Math.Round(data.Quantity * data.Price, 2))
                     })
                     .ToListAsync();
 

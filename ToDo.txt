@@ -1,0 +1,39 @@
+-=# PERHATIAN #=-
+
+0. DILARANG MENGGUNAKAN dan MENYEBARLUASKAN SOURCODE ini.
+1. SOURCE CODE ini merupakan source code dari hasil test Tim Development.
+2. Kepemilikan Source Code berada pada pembuat source Asli,
+dari user yang datanya berada pada tim Dev Profescipta.
+3. Source Code Aplikasi disini hanya ditujukan untuk keperluan Rekruitment Developer Tim Support.
+4. Penyalahgunaan Sourcode dan Aplikasi ini, dapat dianggap sebagai pelanggaran hak cipta.
+
+
+
+
+-=# TASK TO DO (case 03a) #=-
+01. Feature Export, masih belum sesuai ekspektasi, silahkan perbaiki.
+    expektasinya:
+    a. hasil export mencakup informasi detail dari "Total Price" untuk setiap Sales Order
+    b. hasil export untuk tanggal dalam format yyyy-MM-dd
+02. Informasikan Nomor Case kepada HRD didalam email/suject.
+03. Nomor Case untuk sourcode ini adalah : #Case03a
+
+
+
+
+
+-=# REQUIREMENT #=-
+01. Waktu perbaikan sebisamungkin maksimal 1x24 jam.
+02. Disarankan untuk menggunakan Git repository (GitHub, Gitlab, atau lainnya) untuk dapat melihat Waktu pengerjaan.
+03. Apabila tidak memiliki Git, dapat men-share link SourceCode hasil perbaikan, walaupun disarankan untuk membuat Git.
+04. TIDAK ADA TOLERANSI UNTUK PENGGUNAAN CHATGPT, ATAUPUN AI LAINNYA DALAM PENYELESAIAN/FIXING INI.
+
+
+
+
+
+-=# PENUTUP #=-
+Dalam hidup, yang dinilai bukanlah hasil akhir,
+melainkan tahapan dan perjuangan dalam mencapai hasil akhir yang diinginkan.
+
+Selamat Berjuang, Terimakasih.

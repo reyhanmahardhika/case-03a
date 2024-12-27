@@ -112,7 +112,7 @@
                               </button>
                           </td>
                           <td>${item.itemName}</td>
-                          <td>${item.quantity}</td>
+                          <td>${item.quantity.toLocaleString('id-ID')}</td>
                           <td>${price}</td>
                           <td>${totalPrice}</td>
                       </tr>
@@ -141,8 +141,8 @@
             function updateTotals() {
                 var totalItem = items.reduce((sum, item) => sum + item.quantity, 0);
                 var totalAmount = items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
-                $('#totalItem').text(totalItem);
-                $('#totalAmount').text(totalAmount.toFixed(2));
+                $('#totalItem').text(totalItem.toLocaleString('id-ID'));
+                $('#totalAmount').text(totalAmount.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
             }
 
             $('#addItemBtn').click(function() {
